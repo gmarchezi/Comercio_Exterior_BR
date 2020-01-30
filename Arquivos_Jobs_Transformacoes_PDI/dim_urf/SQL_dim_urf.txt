@@ -1,0 +1,13 @@
+CREATE TABLE "public".dim_urf
+(
+  dim_cod_urf BIGSERIAL
+, version INTEGER
+, date_from DATE
+, date_to DATE
+, CO_URF BIGINT
+, NO_URF VARCHAR(65)
+)
+;CREATE INDEX idx_dim_urf_lookup ON "public".dim_urf(CO_URF, NO_URF)
+;
+CREATE INDEX idx_dim_urf_tk ON "public".dim_urf(dim_cod_urf)
+;

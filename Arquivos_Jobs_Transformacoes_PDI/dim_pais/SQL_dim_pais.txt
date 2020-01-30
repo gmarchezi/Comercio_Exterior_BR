@@ -1,0 +1,15 @@
+CREATE TABLE "public".dim_pais
+(
+  dim_cod_pais BIGSERIAL
+, version INTEGER
+, date_from DATE
+, date_to DATE
+, cod_pais VARCHAR(36)
+, cod_pais_ison3 VARCHAR(24)
+, cod_pais_isoa3 VARCHAR(3)
+, nome_pais VARCHAR(50)
+)
+;CREATE INDEX idx_dim_pais_lookup ON "public".dim_pais(cod_pais, cod_pais_ison3, cod_pais_isoa3, nome_pais)
+;
+CREATE INDEX idx_dim_pais_tk ON "public".dim_pais(dim_cod_pais)
+;

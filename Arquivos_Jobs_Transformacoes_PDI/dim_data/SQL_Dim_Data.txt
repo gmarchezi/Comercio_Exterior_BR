@@ -1,0 +1,21 @@
+CREATE TABLE dim_Date
+(
+  dim_cod_data BIGSERIAL
+, version INTEGER
+, date_from DATE
+, date_to DATE
+, id_data DOUBLE PRECISION
+, startDate DATE
+, increment_date DOUBLE PRECISION
+, "current_date" DATE
+, "day" INT
+, weekday INT
+, name_weekday VARCHAR(24)
+, "month" INT
+, name_month VARCHAR(24)
+, "year" INT
+)
+;CREATE INDEX idx_dim_data_lookup ON dim_Date (id_data)
+;
+CREATE INDEX idx_dim_data_tk ON dim_Date (dim_cod_data)
+;
