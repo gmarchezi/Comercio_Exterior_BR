@@ -1,0 +1,15 @@
+CREATE TABLE "public".dim_uf
+(
+  dim_cod_uf BIGSERIAL
+, version INTEGER
+, date_from DATE
+, date_to DATE
+, co_uf INT
+, sg_uf VARCHAR(2)
+, no_uf VARCHAR(24)
+, no_regiao VARCHAR(24)
+)
+;CREATE INDEX idx_dim_uf_lookup ON "public".dim_uf(co_uf)
+;
+CREATE INDEX idx_dim_uf_tk ON "public".dim_uf(dim_cod_uf)
+;

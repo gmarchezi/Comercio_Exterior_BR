@@ -1,0 +1,6 @@
+Recriar dim_pais, arrumando as keys (lookup)
+
+Recriar dim_urf, arrumando as keys (lookup)
+
+
+OBS: dim_data excluida

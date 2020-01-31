@@ -1,0 +1,13 @@
+CREATE TABLE "public".dim_via
+(
+  dim_cod_via BIGSERIAL
+, version INTEGER
+, date_from DATE
+, date_to DATE
+, CO_VIA INT
+, NO_VIA VARCHAR(27)
+)
+;CREATE INDEX idx_dim_via_lookup ON "public".dim_via(CO_VIA)
+;
+CREATE INDEX idx_dim_via_tk ON "public".dim_via(dim_cod_via)
+;

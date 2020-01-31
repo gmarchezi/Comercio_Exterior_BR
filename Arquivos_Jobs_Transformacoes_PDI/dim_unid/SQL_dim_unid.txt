@@ -1,0 +1,14 @@
+CREATE TABLE "public".dim_unid
+(
+  dim_cod_unid BIGSERIAL
+, version INTEGER
+, date_from TIMESTAMP
+, date_to TIMESTAMP
+, CO_UNID BIGINT
+, NO_UNID VARCHAR(34)
+, SG_UNID VARCHAR(5)
+)
+;CREATE INDEX idx_dim_unid_lookup ON "public".dim_unid(CO_UNID)
+;
+CREATE INDEX idx_dim_unid_tk ON "public".dim_unid(dim_cod_unid)
+;
