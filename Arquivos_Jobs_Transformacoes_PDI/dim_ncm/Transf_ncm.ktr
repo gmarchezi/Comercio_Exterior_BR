@@ -436,14 +436,14 @@
   <notepads>
   </notepads>
   <connection>
-    <name>Conexão_Elephant</name>
-    <server>tuffi.db.elephantsql.com</server>
+    <name>Conexao_Postgres_Comercio</name>
+    <server>localhost</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>whfvvsai</database>
+    <database>Comercio_Exterior_BR</database>
     <port>5432</port>
-    <username>whfvvsai</username>
-    <password>Encrypted 6a79536d525133514639755939446b7affd1de9a1fcab98a9b21985cf3b19df1</password>
+    <username>postgres</username>
+    <password>Encrypted 2be98afc86aa7f287a30cbe75ca93ff8f</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -487,11 +487,6 @@
     </attributes>
   </connection>
   <order>
-    <hop>
-      <from>CSV_NCM</from>
-      <to>Sort_CO_PPE</to>
-      <enabled>Y</enabled>
-    </hop>
     <hop>
       <from>CSV_PPE</from>
       <to>Sort_CO_PPE_2</to>
@@ -710,6 +705,16 @@
     <hop>
       <from>Select values 8</from>
       <to>Dimension lookup/update_dim_ncm</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>CSV_NCM</from>
+      <to>Select values 9</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values 9</from>
+      <to>Sort_CO_PPE</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1108,7 +1113,7 @@
     <name>CSV_NCM</name>
     <type>CsvInput</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -1592,7 +1597,7 @@
     </partitioning>
     <schema>public</schema>
     <table>dim_ncm</table>
-    <connection>Conexão_Elephant</connection>
+    <connection>Conexao_Postgres_Comercio</connection>
     <commit>100</commit>
     <update>Y</update>
     <fields>
@@ -2302,6 +2307,23 @@
       <remove>
         <name>CO_CUCI_ITEM_1</name>
       </remove>
+      <meta>
+        <name>CO_CUCI_ITEM</name>
+        <rename>CO_CUCI_ITEM</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -2426,6 +2448,23 @@
       <remove>
         <name>CO_SH6_1</name>
       </remove>
+      <meta>
+        <name>CO_EXP_SUBSET</name>
+        <rename>CO_EXP_SUBSET</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -3110,6 +3149,51 @@
     <GUI>
       <xloc>944</xloc>
       <yloc>512</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values 9</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>CO_NCM</name>
+        <rename>CO_NCM</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>112</xloc>
+      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

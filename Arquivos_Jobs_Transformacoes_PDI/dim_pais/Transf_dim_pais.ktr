@@ -489,6 +489,11 @@
   <order>
     <hop>
       <from>CSV_PAIS</from>
+      <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values</from>
       <to>Dimension lookup/update_dim_pais</to>
       <enabled>Y</enabled>
     </hop>
@@ -526,17 +531,6 @@
         <decimal>,</decimal>
         <group>.</group>
         <length>36</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>CO_PAIS_ISON3</name>
-        <type>String</type>
-        <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>24</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
@@ -604,11 +598,6 @@
         <to>date_to</to>
       </date>
       <field>
-        <name>CO_PAIS_ISON3</name>
-        <lookup>CO_PAIS_ISON3</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
         <name>CO_PAIS_ISOA3</name>
         <lookup>CO_PAIS_ISOA3</lookup>
         <update>Insert</update>
@@ -644,7 +633,52 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>432</xloc>
+      <xloc>592</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>CO_PAIS</name>
+        <rename>CO_PAIS</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
