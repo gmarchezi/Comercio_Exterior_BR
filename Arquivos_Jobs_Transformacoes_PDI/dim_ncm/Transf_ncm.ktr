@@ -648,26 +648,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Dummy 3</from>
-      <to>Dummy 4</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy 4</from>
-      <to>Sort_ISIC</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>CSV_ISIC</from>
-      <to>Sort_ISIC_2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sort_ISIC</from>
-      <to>LEFT_JOIN_CO_ISIC</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Sort_ISIC_2</from>
       <to>LEFT_JOIN_CO_ISIC</to>
       <enabled>Y</enabled>
@@ -715,6 +695,51 @@
     <hop>
       <from>Select values 9</from>
       <to>Sort_CO_PPE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Set field value to a constant</from>
+      <to>Sort_ISIC_2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>CSV_ISIC</from>
+      <to>Filter rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows</from>
+      <to>Set field value to a constant</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows</from>
+      <to>Sort_ISIC_2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows 2</from>
+      <to>Replace Value</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy 3</from>
+      <to>Filter rows 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows 2</from>
+      <to>Sort_ISIC</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Replace Value</from>
+      <to>Sort_ISIC</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort_ISIC</from>
+      <to>LEFT_JOIN_CO_ISIC</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1104,7 +1129,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
+      <xloc>16</xloc>
       <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1902,31 +1927,6 @@
     </GUI>
   </step>
   <step>
-    <name>Dummy 4</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>176</xloc>
-      <yloc>592</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>LEFT JOIN_CO_PPE</name>
     <type>MergeJoin</type>
     <description/>
@@ -2307,23 +2307,6 @@
       <remove>
         <name>CO_CUCI_ITEM_1</name>
       </remove>
-      <meta>
-        <name>CO_CUCI_ITEM</name>
-        <rename>CO_CUCI_ITEM</rename>
-        <type>Integer</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -2448,9 +2431,37 @@
       <remove>
         <name>CO_SH6_1</name>
       </remove>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>816</xloc>
+      <yloc>688</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values 9</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
       <meta>
-        <name>CO_EXP_SUBSET</name>
-        <rename>CO_EXP_SUBSET</rename>
+        <name>CO_NCM</name>
+        <rename>CO_NCM</rename>
         <type>Integer</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -2475,8 +2486,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>816</xloc>
-      <yloc>688</yloc>
+      <xloc>112</xloc>
+      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2937,7 +2948,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
+      <xloc>96</xloc>
       <yloc>688</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3153,8 +3164,8 @@
     </GUI>
   </step>
   <step>
-    <name>Select values 9</name>
-    <type>SelectValues</type>
+    <name>Set field value to a constant</name>
+    <type>SetValueConstant</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -3163,25 +3174,14 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <usevar>N</usevar>
     <fields>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>CO_NCM</name>
-        <rename>CO_NCM</rename>
-        <type>Integer</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
+      <field>
+        <name>CO_ISIC_DIVISAO</name>
+        <value>83</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -3192,8 +3192,130 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
-      <yloc>48</yloc>
+      <xloc>176</xloc>
+      <yloc>864</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter rows</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>Set field value to a constant</send_true_to>
+    <send_false_to>Sort_ISIC_2</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>CO_ISIC_DIVISAO</leftvalue>
+        <function>=</function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>Integer</type>
+          <text>9223372036854775807</text>
+          <length>-1</length>
+          <precision>0</precision>
+          <isnull>N</isnull>
+          <mask>####0;-####0</mask>
+        </value>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>16</xloc>
+      <yloc>864</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter rows 2</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>Replace Value</send_true_to>
+    <send_false_to>Sort_ISIC</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>CO_ISIC4</leftvalue>
+        <function>=</function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>Integer</type>
+          <text>9223372036854775807</text>
+          <length>-1</length>
+          <precision>0</precision>
+          <isnull>N</isnull>
+          <mask>####0;-####0</mask>
+        </value>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>592</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Replace Value</name>
+    <type>SetValueConstant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <usevar>N</usevar>
+    <fields>
+      <field>
+        <name>CO_ISIC4</name>
+        <value>303</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
+      <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
