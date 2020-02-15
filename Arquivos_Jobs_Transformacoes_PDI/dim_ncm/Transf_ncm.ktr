@@ -436,7 +436,7 @@
   <notepads>
   </notepads>
   <connection>
-    <name>Conexao_Postgres_Comercio</name>
+    <name>Conexao_Comercio</name>
     <server>localhost</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
@@ -683,11 +683,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values 8</from>
-      <to>Dimension lookup/update_dim_ncm</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>CSV_NCM</from>
       <to>Select values 9</to>
       <enabled>Y</enabled>
@@ -698,12 +693,27 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Set field value to a constant</from>
-      <to>Sort_ISIC_2</to>
+      <from>Sort_ISIC</from>
+      <to>LEFT_JOIN_CO_ISIC</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy 3</from>
+      <to>Dummy </to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy </from>
+      <to>Sort_ISIC</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>CSV_ISIC</from>
+      <to>Sort_ISIC_2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values 8</from>
       <to>Filter rows</to>
       <enabled>Y</enabled>
     </hop>
@@ -713,33 +723,18 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Set field value to a constant</from>
+      <to>Dummy (do nothing)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Filter rows</from>
-      <to>Sort_ISIC_2</to>
+      <to>Dummy (do nothing)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Filter rows 2</from>
-      <to>Replace Value</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy 3</from>
-      <to>Filter rows 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Filter rows 2</from>
-      <to>Sort_ISIC</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Replace Value</from>
-      <to>Sort_ISIC</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sort_ISIC</from>
-      <to>LEFT_JOIN_CO_ISIC</to>
+      <from>Dummy (do nothing)</from>
+      <to>Dimension lookup/update_dim_ncm</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -754,7 +749,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>C:\Users\gabri\Documents\GitHub\Comercio_Exterior_BR\Arquivos_Base\NCM_CGCE.csv</filename>
+    <filename>/home/gabriel/Documents/Comercio_Exterior_BR/Arquivos_Base/NCM_CGCE.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -860,7 +855,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>C:\Users\gabri\Documents\GitHub\Comercio_Exterior_BR\Arquivos_Base\NCM_CUCI.csv</filename>
+    <filename>/home/gabriel/Documents/Comercio_Exterior_BR/Arquivos_Base/NCM_CUCI.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -878,9 +873,9 @@
         <name>CO_CUCI_ITEM</name>
         <type>String</type>
         <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
         <length>5</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
@@ -889,10 +884,21 @@
         <name>NO_CUCI_ITEM</name>
         <type>String</type>
         <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>255</length>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>214</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>NO_CUCI_ITEM_ING</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>197</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
@@ -900,9 +906,9 @@
         <name>CO_CUCI_SUB</name>
         <type>Integer</type>
         <format>#</format>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
         <length>15</length>
         <precision>0</precision>
         <trim_type>none</trim_type>
@@ -911,10 +917,21 @@
         <name>NO_CUCI_SUB</name>
         <type>String</type>
         <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>255</length>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>136</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>NO_CUCI_SUB_ING</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>134</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
@@ -922,9 +939,9 @@
         <name>CO_CUCI_POS</name>
         <type>Integer</type>
         <format>#</format>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
         <length>15</length>
         <precision>0</precision>
         <trim_type>none</trim_type>
@@ -933,10 +950,21 @@
         <name>NO_CUCI_POS</name>
         <type>String</type>
         <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>255</length>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>156</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>NO_CUCI_POS_ING</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>167</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
@@ -944,9 +972,9 @@
         <name>CO_CUCI_CAP</name>
         <type>Integer</type>
         <format>#</format>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
         <length>15</length>
         <precision>0</precision>
         <trim_type>none</trim_type>
@@ -955,10 +983,21 @@
         <name>NO_CUCI_CAP</name>
         <type>String</type>
         <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
         <length>100</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>NO_CUCI_CAP_ING</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>98</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
@@ -966,9 +1005,9 @@
         <name>CO_CUCI_SEC</name>
         <type>Integer</type>
         <format>#</format>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
         <length>15</length>
         <precision>0</precision>
         <trim_type>none</trim_type>
@@ -977,10 +1016,21 @@
         <name>NO_CUCI_SEC</name>
         <type>String</type>
         <format/>
-        <currency>R$</currency>
-        <decimal>,</decimal>
-        <group>.</group>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
         <length>67</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>NO_CUCI_SEC_ING</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>65</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
@@ -1010,7 +1060,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>C:\Users\gabri\Documents\GitHub\Comercio_Exterior_BR\Arquivos_Base\NCM_FAT_AGREG.csv</filename>
+    <filename>/home/gabriel/Documents/Comercio_Exterior_BR/Arquivos_Base/NCM_FAT_AGREG.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -1083,7 +1133,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>C:\Users\gabri\Documents\GitHub\Comercio_Exterior_BR\Arquivos_Base\NCM_ISIC_CUCI.csv</filename>
+    <filename>/home/gabriel/Documents/Comercio_Exterior_BR/Arquivos_Base/NCM_ISIC_CUCI.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -1129,7 +1179,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>16</xloc>
+      <xloc>80</xloc>
       <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1145,7 +1195,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>C:\Users\gabri\Documents\GitHub\Comercio_Exterior_BR\Arquivos_Base\NCM.csv</filename>
+    <filename>/home/gabriel/Documents/Comercio_Exterior_BR/Arquivos_Base/NCM.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -1306,7 +1356,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>C:\Users\gabri\Documents\GitHub\Comercio_Exterior_BR\Arquivos_Base\NCM_PPE.csv</filename>
+    <filename>/home/gabriel/Documents/Comercio_Exterior_BR/Arquivos_Base/NCM_PPE.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -1368,7 +1418,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>C:\Users\gabri\Documents\GitHub\Comercio_Exterior_BR\Arquivos_Base\NCM_PPI.csv</filename>
+    <filename>/home/gabriel/Documents/Comercio_Exterior_BR/Arquivos_Base/NCM_PPI.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -1430,7 +1480,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>C:\Users\gabri\Documents\GitHub\Comercio_Exterior_BR\Arquivos_Base\NCM_SH.csv</filename>
+    <filename>/home/gabriel/Documents/Comercio_Exterior_BR/Arquivos_Base/NCM_SH.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -1558,7 +1608,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>C:\Users\gabri\Documents\GitHub\Comercio_Exterior_BR\Arquivos_Base\SIIT.csv</filename>
+    <filename>/home/gabriel/Documents/Comercio_Exterior_BR/Arquivos_Base/SIIT.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -1622,7 +1672,7 @@
     </partitioning>
     <schema>public</schema>
     <table>dim_ncm</table>
-    <connection>Conexao_Postgres_Comercio</connection>
+    <connection>Conexao_Comercio</connection>
     <commit>100</commit>
     <update>Y</update>
     <fields>
@@ -1846,7 +1896,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1056</xloc>
+      <xloc>1216</xloc>
       <yloc>688</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1873,6 +1923,31 @@
     <GUI>
       <xloc>1216</xloc>
       <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy </name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>592</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3164,40 +3239,6 @@
     </GUI>
   </step>
   <step>
-    <name>Set field value to a constant</name>
-    <type>SetValueConstant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <usevar>N</usevar>
-    <fields>
-      <field>
-        <name>CO_ISIC_DIVISAO</name>
-        <value>83</value>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>176</xloc>
-      <yloc>864</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Filter rows</name>
     <type>FilterRows</type>
     <description/>
@@ -3209,51 +3250,7 @@
       <schema_name/>
     </partitioning>
     <send_true_to>Set field value to a constant</send_true_to>
-    <send_false_to>Sort_ISIC_2</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>CO_ISIC_DIVISAO</leftvalue>
-        <function>=</function>
-        <rightvalue/>
-        <value>
-          <name>constant</name>
-          <type>Integer</type>
-          <text>9223372036854775807</text>
-          <length>-1</length>
-          <precision>0</precision>
-          <isnull>N</isnull>
-          <mask>####0;-####0</mask>
-        </value>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>16</xloc>
-      <yloc>864</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Filter rows 2</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <send_true_to>Replace Value</send_true_to>
-    <send_false_to>Sort_ISIC</send_false_to>
+    <send_false_to>Dummy (do nothing)</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -3280,13 +3277,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
-      <yloc>592</yloc>
+      <xloc>944</xloc>
+      <yloc>688</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Replace Value</name>
+    <name>Set field value to a constant</name>
     <type>SetValueConstant</type>
     <description/>
     <distribute>Y</distribute>
@@ -3300,7 +3297,7 @@
     <fields>
       <field>
         <name>CO_ISIC4</name>
-        <value>303</value>
+        <value>83</value>
         <mask/>
         <set_empty_string>N</set_empty_string>
       </field>
@@ -3314,8 +3311,33 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>208</xloc>
-      <yloc>640</yloc>
+      <xloc>944</xloc>
+      <yloc>800</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing)</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1088</xloc>
+      <yloc>688</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
