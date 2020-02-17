@@ -1252,6 +1252,78 @@
     </GUI>
   </step>
   <step>
+    <name>Dimension lookup/update_dim_uf</name>
+    <type>DimensionLookup</type>
+    <description>Dimensão UF</description>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <schema>public</schema>
+    <table>dim_uf</table>
+    <connection>Conexao_Postgres_Comercio</connection>
+    <commit>100</commit>
+    <update>N</update>
+    <fields>
+      <key>
+        <name>SG_UF_NCM</name>
+        <lookup>SG_UF</lookup>
+      </key>
+      <date>
+        <name/>
+        <from>date_from</from>
+        <to>date_to</to>
+      </date>
+      <field>
+        <name>NO_UF</name>
+        <lookup>no_uf</lookup>
+        <update>None</update>
+      </field>
+      <field>
+        <name>NO_REGIAO</name>
+        <lookup>no_regiao</lookup>
+        <update>None</update>
+      </field>
+      <field>
+        <name>CO_UF</name>
+        <lookup>CO_UF</lookup>
+        <update>None</update>
+      </field>
+      <return>
+        <name>dim_cod_uf</name>
+        <rename/>
+        <creation_method>tablemax</creation_method>
+        <use_autoinc>N</use_autoinc>
+        <version>version</version>
+      </return>
+    </fields>
+    <sequence/>
+    <min_year>1900</min_year>
+    <max_year>2199</max_year>
+    <cache_size>-1</cache_size>
+    <preload_cache>N</preload_cache>
+    <use_start_date_alternative>N</use_start_date_alternative>
+    <start_date_alternative>none</start_date_alternative>
+    <start_date_field_name/>
+    <useBatch>N</useBatch>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>624</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Dimension lookup/update_dim_unid</name>
     <type>DimensionLookup</type>
     <description/>
@@ -1531,78 +1603,6 @@
     <GUI>
       <xloc>416</xloc>
       <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Dimension lookup/update_dim_uf</name>
-    <type>DimensionLookup</type>
-    <description>Dimensão UF</description>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <schema>public</schema>
-    <table>dim_uf</table>
-    <connection>Conexao_Postgres_Comercio</connection>
-    <commit>100</commit>
-    <update>N</update>
-    <fields>
-      <key>
-        <name>SG_UF_NCM</name>
-        <lookup>SG_UF</lookup>
-      </key>
-      <date>
-        <name/>
-        <from>date_from</from>
-        <to>date_to</to>
-      </date>
-      <field>
-        <name>NO_UF</name>
-        <lookup>no_uf</lookup>
-        <update>None</update>
-      </field>
-      <field>
-        <name>NO_REGIAO</name>
-        <lookup>no_regiao</lookup>
-        <update>None</update>
-      </field>
-      <field>
-        <name>CO_UF</name>
-        <lookup>CO_UF</lookup>
-        <update>None</update>
-      </field>
-      <return>
-        <name>dim_cod_uf</name>
-        <rename/>
-        <creation_method>tablemax</creation_method>
-        <use_autoinc>N</use_autoinc>
-        <version>version</version>
-      </return>
-    </fields>
-    <sequence/>
-    <min_year>1900</min_year>
-    <max_year>2199</max_year>
-    <cache_size>-1</cache_size>
-    <preload_cache>N</preload_cache>
-    <use_start_date_alternative>N</use_start_date_alternative>
-    <start_date_alternative>none</start_date_alternative>
-    <start_date_field_name/>
-    <useBatch>N</useBatch>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
