@@ -749,7 +749,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>/home/gabriel/Documents/Comercio_Exterior_BR/Arquivos_Base/NCM_CGCE.csv</filename>
+    <filename>C:\Users\gabri\Documents\GitHub\Comercio_Exterior_BR\Arquivos_Base\NCM_CGCE.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -855,7 +855,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>/home/gabriel/Documents/Comercio_Exterior_BR/Arquivos_Base/NCM_CUCI.csv</filename>
+    <filename>C:\Users\gabri\Documents\GitHub\Comercio_Exterior_BR\Arquivos_Base\NCM_CUCI.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -1060,7 +1060,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>/home/gabriel/Documents/Comercio_Exterior_BR/Arquivos_Base/NCM_FAT_AGREG.csv</filename>
+    <filename>C:\Users\gabri\Documents\GitHub\Comercio_Exterior_BR\Arquivos_Base\NCM_FAT_AGREG.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -1133,7 +1133,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>/home/gabriel/Documents/Comercio_Exterior_BR/Arquivos_Base/NCM_ISIC_CUCI.csv</filename>
+    <filename>C:\Users\gabri\Documents\GitHub\Comercio_Exterior_BR\Arquivos_Base\NCM_ISIC_CUCI.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -1195,7 +1195,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>/home/gabriel/Documents/Comercio_Exterior_BR/Arquivos_Base/NCM.csv</filename>
+    <filename>C:\Users\gabri\Documents\GitHub\Comercio_Exterior_BR\Arquivos_Base\NCM.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -1356,7 +1356,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>/home/gabriel/Documents/Comercio_Exterior_BR/Arquivos_Base/NCM_PPE.csv</filename>
+    <filename>C:\Users\gabri\Documents\GitHub\Comercio_Exterior_BR\Arquivos_Base\NCM_PPE.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -1418,7 +1418,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>/home/gabriel/Documents/Comercio_Exterior_BR/Arquivos_Base/NCM_PPI.csv</filename>
+    <filename>C:\Users\gabri\Documents\GitHub\Comercio_Exterior_BR\Arquivos_Base\NCM_PPI.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -1480,7 +1480,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>/home/gabriel/Documents/Comercio_Exterior_BR/Arquivos_Base/NCM_SH.csv</filename>
+    <filename>C:\Users\gabri\Documents\GitHub\Comercio_Exterior_BR\Arquivos_Base\NCM_SH.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -1608,7 +1608,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>/home/gabriel/Documents/Comercio_Exterior_BR/Arquivos_Base/SIIT.csv</filename>
+    <filename>C:\Users\gabri\Documents\GitHub\Comercio_Exterior_BR\Arquivos_Base\SIIT.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -1952,6 +1952,31 @@
     </GUI>
   </step>
   <step>
+    <name>Dummy (do nothing)</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1088</xloc>
+      <yloc>688</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Dummy 2</name>
     <type>Dummy</type>
     <description/>
@@ -1998,6 +2023,50 @@
     <GUI>
       <xloc>1216</xloc>
       <yloc>592</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter rows</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>Set field value to a constant</send_true_to>
+    <send_false_to>Dummy (do nothing)</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>CO_ISIC4</leftvalue>
+        <function>=</function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>Integer</type>
+          <text>9223372036854775807</text>
+          <length>-1</length>
+          <precision>0</precision>
+          <isnull>N</isnull>
+          <mask>####0;-####0</mask>
+        </value>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>944</xloc>
+      <yloc>688</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2563,6 +2632,40 @@
     <GUI>
       <xloc>112</xloc>
       <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Set field value to a constant</name>
+    <type>SetValueConstant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <usevar>N</usevar>
+    <fields>
+      <field>
+        <name>CO_ISIC4</name>
+        <value>83</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>944</xloc>
+      <yloc>800</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3235,109 +3338,6 @@
     <GUI>
       <xloc>944</xloc>
       <yloc>512</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Filter rows</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <send_true_to>Set field value to a constant</send_true_to>
-    <send_false_to>Dummy (do nothing)</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>CO_ISIC4</leftvalue>
-        <function>=</function>
-        <rightvalue/>
-        <value>
-          <name>constant</name>
-          <type>Integer</type>
-          <text>9223372036854775807</text>
-          <length>-1</length>
-          <precision>0</precision>
-          <isnull>N</isnull>
-          <mask>####0;-####0</mask>
-        </value>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>944</xloc>
-      <yloc>688</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Set field value to a constant</name>
-    <type>SetValueConstant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <usevar>N</usevar>
-    <fields>
-      <field>
-        <name>CO_ISIC4</name>
-        <value>83</value>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>944</xloc>
-      <yloc>800</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Dummy (do nothing)</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1088</xloc>
-      <yloc>688</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
