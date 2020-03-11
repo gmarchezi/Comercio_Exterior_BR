@@ -1,6 +1,12 @@
-Recriar dim_pais, arrumando as keys (lookup)
+OK ***Recriar dim_pais, arrumando as keys (lookup) ***
 
-Recriar dim_urf, arrumando as keys (lookup)
+OK *** Recriar dim_urf, arrumando as keys (lookup) ***
 
 
-OBS: dim_data excluida
+OK *** dim_data excluida ***
+
+
+
+
+*** Criar um cenário bem definido de utilização dos softwares, evitando ajustes no uso dos mesmos
+que resultaria em comparação fraca ***
